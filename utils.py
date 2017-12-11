@@ -93,18 +93,14 @@ def compare_result(observed, predicted):
     print('Entities in prediction: %d' % total_predicted)
 
     for t in ('entities', 'sentiment'):
-        print()
         prec = correct[t] / total_predicted
         recl = correct[t] / total_observed
         try:
             f = 2 * prec * recl / (prec + recl)
         except ZeroDivisionError:
             f = 0
-        print(t)
-        print(' - Correct   : %d' % correct[t])
-        print(' - Precision : %.4f' % prec)
-        print(' - Recall    : %.4f' % recl)
-        print(' - F score   : %.4f' % f)
+        print('%s - Correct : %d' % (t, correct[t]))
+        print('%s - F score : %.4f (P: %.4f, R: %.4f)' % (t, f, prec, recl))
 
 
 def load_file(filename):
